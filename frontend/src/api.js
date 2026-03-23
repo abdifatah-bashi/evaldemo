@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // Use relative '/api' path when built and served by the Express backend,
-  // but use the full localhost URL during local Vite development.
-  baseURL: import.meta.env.DEV ? 'http://localhost:8080/api' : '/api',
+  // Force the absolute URL of the domain to prevent any path resolution bugs on Render
+  baseURL: import.meta.env.DEV ? 'http://localhost:8080/api' : `${window.location.origin}/api`,
   headers: {
     'Content-Type': 'application/json'
   }
